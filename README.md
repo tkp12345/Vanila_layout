@@ -1,5 +1,14 @@
+> ## 실행방법
+```
+ $ npm i
+ $ npm run dev 
+ 
+ >3080 포트 실행 (http://localhost:3080/)
+```
+<br/>
 
-> ## 인터넷 익스플로러 10 이상 지원 설정 
+
+ > ## 인터넷 익스플로러 10 이상 지원 설정 
 ### ./webpack.config.ts 파일 babel-loader presets 설정 추가 
 ```
  module: {
