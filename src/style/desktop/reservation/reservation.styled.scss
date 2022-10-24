@@ -1,0 +1,88 @@
+@import '../../color';
+.contents {
+  display: flex;
+  margin-top: auto;
+  height: 600px;
+
+  .reservationList-container {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    overflow-y: scroll;
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #5c6270;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: grey;
+      border-radius: 10px;
+      box-shadow: inset 0px 0px 5px white;
+    }
+
+
+    .reservationList-items {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      .reservationList-item {
+        background-color: $ITEM_COLOR;
+        display: flex;
+        align-items: center;
+        text-overflow: ellipsis;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding: 1.0em 1.3em;
+        border-radius: 0.9em;
+        cursor: pointer;
+        font-weight: 600;
+
+        span {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          padding: 3px 0px;
+        }
+
+        div{
+          display: flex;
+          flex-direction: column;
+        }
+
+        .reservation-status {
+          display: flex;
+          align-items: center;
+          width: calc(90px + 0.01em);
+          font-size:1.0rem;
+          margin-right: 40px;
+
+        }
+
+        .reservation-info {
+          width: calc(100% - 200px);
+          font-size:0.9rem;
+
+
+
+        }
+
+        .reservation-event {
+          width: calc(75px + 0.01em)
+        }
+      }
+    }
+  }
+
+  .reservationDetail-container {
+    flex-grow: 0;
+    width: 300px;
+    background: aqua;
+    height: 800px;
+  }
+}

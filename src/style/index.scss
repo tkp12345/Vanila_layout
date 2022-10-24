@@ -1,0 +1,32 @@
+@import 'color';
+main {
+  background-color: $BACKGROUND_COLOR;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1024px;
+  padding: 3.5vw;
+
+  h1{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+  }
+
+  section{
+    padding:0px 8px
+  }
+}
+
+@media (max-width: 1023px) {
+  @import './mobile/index.scss';
+}

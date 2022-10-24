@@ -38,6 +38,7 @@
     "fork-ts-checker-webpack-plugin": "^7.2.3",
     "prettier": "^2.2.1",
     "react-refresh": "^0.12.0",
+    "sass-loader": "^13.1.0",
     "style-loader": "^3.2.1",
     "ts-node": "^10.0.0",
     "webpack": "^5.24.2",
