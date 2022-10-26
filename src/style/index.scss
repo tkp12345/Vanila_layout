@@ -1,4 +1,5 @@
 @import 'color';
+
 main {
   background-color: $BACKGROUND_COLOR;
   min-height: 100%;
@@ -8,25 +9,28 @@ main {
   overflow: hidden;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 1024px;
-  padding: 3.5vw;
 
-  h1{
+
+  h1 {
     text-align: center;
-    font-size: 2rem;
-    font-weight: 500;
-    letter-spacing: 2px;
+    margin: 0;
+    padding: 0;
   }
-
-  section{
-    padding:0px 8px
+  h2,
+  h3,
+  h5,
+  p,
+  ul,
+  li,
+  button {
+    margin: 0;
+    padding: 0;
+    border: 0;
   }
-}
+  section {
+    padding: 0px 8px;
+  }
 
 @media (max-width: 1023px) {
-  @import './mobile/index.scss';
+  @import 'mobile/index.scss';
 }

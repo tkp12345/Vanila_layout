@@ -1,88 +1,195 @@
 @import '../../color';
-.contents {
+
+.container {
   display: flex;
-  margin-top: auto;
-  height: 600px;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1024px;
+  padding: 3.5vw;
 
-  .reservationList-container {
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: auto;
-    overflow-y: scroll;
-    overflow-x: auto;
-    &::-webkit-scrollbar {
-      width: 10px;
-    }
+  h1 {
+    padding: 2rem 0;
+  }
 
-    &::-webkit-scrollbar-thumb {
-      background-color: #5c6270;
-      border-radius: 10px;
-    }
+  .contents {
+    display: flex;
+    margin-top: auto;
+    height: 600px;
+    max-height: 32rem;
 
-    &::-webkit-scrollbar-track {
-      background-color: grey;
-      border-radius: 10px;
-      box-shadow: inset 0px 0px 5px white;
-    }
+    .reservationList-container {
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: auto;
+      overflow-y: scroll;
+      overflow-x: auto;
 
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
 
-    .reservationList-items {
-      list-style: none;
-      margin: 0;
-      padding: 0;
+      &::-webkit-scrollbar-thumb {
+        background-color: #5c6270;
+        border-radius: 10px;
+      }
 
-      .reservationList-item {
-        background-color: $ITEM_COLOR;
-        display: flex;
-        align-items: center;
-        text-overflow: ellipsis;
-        justify-content: space-between;
-        margin-bottom: 10px;
-        padding: 1.0em 1.3em;
-        border-radius: 0.9em;
-        cursor: pointer;
-        font-weight: 600;
+      &::-webkit-scrollbar-track {
+        background-color: #e8dddd;
+        border-radius: 10px;
+        box-shadow: inset 0px 0px 5px white;
+      }
 
-        span {
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          overflow: hidden;
-          padding: 3px 0px;
-        }
+      .reservationList-items {
+        list-style: none;
 
-        div{
-          display: flex;
-          flex-direction: column;
-        }
-
-        .reservation-status {
+        .reservationList-item {
+          background-color: $ITEM_COLOR;
           display: flex;
           align-items: center;
-          width: calc(90px + 0.01em);
-          font-size:1.0rem;
-          margin-right: 40px;
+          text-overflow: ellipsis;
+          justify-content: space-between;
+          margin-bottom: 10px;
+          padding: 1rem 1.3rem;
+          border-radius: 0.9rem;
+          cursor: pointer;
+          font-weight: 600;
+          transition: all 0.5s;
 
+          &:hover {
+            transform: translateY(-0.1rem);
+          }
+
+          .closeBtn {
+            display: none;
+          }
+
+          span {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            padding: 3px 0px;
+          }
+
+          div {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .reservation-status {
+            display: flex;
+            align-items: center;
+            width: calc(60px + 0.01em);
+            font-size: 0.9rem;
+            margin-right: 20px;
+
+            .reserved {
+              color: $RESERVED_COLOR;
+            }
+
+            .seated {
+              color: $SEATED_COLOR;
+            }
+          }
+
+          .reservation-info {
+            width: calc(100% - 200px);
+            font-size: 0.8rem;
+          }
+
+          .reservation-event {
+            width: calc(75px + 0.01em);
+
+            .reservation-btn {
+              height: 32px;
+              min-width: 50px;
+              font-size: 14px;
+              padding: 0 22px;
+              border-radius: 5px;
+              border: $RESERVED_BTN_COLOR 1px solid;
+              cursor: pointer;
+
+              &:hover {
+                opacity: 0.5;
+              }
+            }
+
+            .reserved {
+              color: #ffffff;
+              background-color: $RESERVED_BTN_COLOR;
+            }
+
+            .seated {
+              color: $RESERVED_BTN_COLOR;
+              background-color: $SEATED_BTN_COLOR;
+            }
+          }
         }
+      }
+    }
 
-        .reservation-info {
-          width: calc(100% - 200px);
-          font-size:0.9rem;
+    .reservationDetail-container {
+      .reservationDetail-items {
+        flex-grow: 0;
+        width: 370px;
+        background-color: $ITEM_COLOR;
+        height: 100%;
+        border-radius: 0.9rem;
+        padding: 20px;
+        z-index: 9;
 
-
-
+        .closeBtn {
+          opacity: 0;
         }
+        .reservationDetail-box {
+          padding-bottom: 30px;
 
-        .reservation-event {
-          width: calc(75px + 0.01em)
+          h3 {
+            padding-bottom: 1rem;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.2rem;
+          }
+
+          ul {
+            li {
+              padding: 6px 0px;
+              display: flex;
+              align-items: center;
+              list-style: none;
+
+              .li-title {
+                width: 80px;
+                font-size: 14px;
+                font-weight: 600;
+                color: #979aa2;
+              }
+
+              p {
+                font-size: 13px;
+                font-weight: 700;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+              .text-area {
+                width: calc(100% - 80px);
+                word-break: break-all;
+
+                p {
+                  white-space: normal;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 3;
+                  -webkit-box-orient: vertical;
+                  overflow: hidden;
+                }
+              }
+            }
+          }
         }
       }
     }
   }
+}
 
-  .reservationDetail-container {
-    flex-grow: 0;
-    width: 300px;
-    background: aqua;
-    height: 800px;
-  }
+@media (max-width: 1023px) {
+  @import '../../mobile/reservation.mobile.styled';
 }

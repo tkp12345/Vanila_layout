@@ -1,7 +1,7 @@
 import Component from '../../module/Component';
 import '../../style/desktop/reservation/reservation.styled.scss';
-import {btnStatusDataFilter, statusDataFilter, timeDataFilter } from '../../utills/dataFilter';
-import {$} from '../../utills/util'
+import '../../style/mobile/index.scss';
+import { btnStatusDataFilter, statusDataFilter, timeDataFilter } from '../../utills/dataFilter';
 export default class ReservationList extends Component {
   constructor(...rest) {
     // @ts-ignore
@@ -10,18 +10,16 @@ export default class ReservationList extends Component {
 
   template(): string {
     const { reservations } = this.props;
-    console.log('reservationList:', reservations);
     if (!reservations) return '';
-
     return `
         <ul class="reservationList-items">
                 ${reservations
                   ?.map(
                     (reservation) =>
-                      `<li class='reservationList-item' data-id="${reservation.id}">
-                        <div class="reservation-status">
-                            <span>${timeDataFilter(reservation.timeReserved)}</span>
-                            <span>${statusDataFilter(reservation.status)}</span>
+                      `<li class='reservationList-item' key="${reservation.id}" data-id="${reservation.id}">
+                          <div class="reservation-status">
+                           <span>${timeDataFilter(reservation.timeReserved)}</span>
+                            <span class="${reservation.status}">${statusDataFilter(reservation.status)}</span>
                         </div>
                         <div class="reservation-info">
                             <span>${reservation.customer.name} - ${reservation.tables?.map(
@@ -33,37 +31,21 @@ export default class ReservationList extends Component {
                             <span>${reservation.menus?.map((menu) => ` ${menu.name}(${menu.qty}) `)}</span>
                         </div>
                         <div class="reservation-event">
-                        <button class="reservation-btn">${btnStatusDataFilter(reservation.status)}</button>
+                        <button class="reservation-btn ${reservation.status}">${btnStatusDataFilter(
+                        reservation.status,
+                      )}</button>
                         </div>
                         </li>`,
-                  ).join('')}
+                  )
+                  .join('')}
                 </ul>
         `;
   }
 
   componentDidMount() {
-    const { onClickReservation , onClickBtn } = this.props;
 
+    const { onClickReservation, onClickBtn } = this.props;
     this.$target.addEventListener('click', onClickReservation);
-    this.$target.addEventListener('click', this.onClickItem.bind(this));
-
     this.$target.addEventListener('click', onClickBtn);
-
   }
-
-  onClickItem({ target }) {
-    if(target.tagName === 'BUTTON') return;
-    const { onClickReservation } = this.props;
-
-    // if (target.tagName === 'LI' || target.tagName === 'UL') return;
-    const id = target.closest('li')?.dataset?.id;
-    console.log('id:', id);
-    onClickReservation(id);
-  }
-
-
-
-
-
-
 }

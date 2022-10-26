@@ -1,33 +1,31 @@
-export default class Component{
-    $target;
-    props;
-    state;
-    constructor($target, props?:any) {
-        this.$target = $target;
-        this.props = props;
+export default class Component {
+  $target;
+  props;
+  state;
+  constructor($target, props?: any) {
+    this.$target = $target;
+    this.props = props;
 
-        this.initialState()
-    }
+    this.initialState();
+  }
 
-    async initialState(){
-        this.render();
-    }
+  async initialState() {
+    this.render();
+  }
 
-    setState(newState){
-        this.state = newState;
-        this.render();
-    }
+  setState(newState) {
+    this.state = newState;
+    this.render();
+  }
 
-    template(){
-        return '';
-    }
+  template() {
+    return '';
+  }
 
-    render(){
-        this.$target.innerHTML = this.template();
-        this.componentDidMount();
-    }
+  render() {
+    this.$target.innerHTML = this.template();
+    this.componentDidMount();
+  }
 
-    componentDidMount(){
-
-    }
+  componentDidMount() {}
 }
