@@ -1,4 +1,4 @@
-export interface constructorType{
-  $target: HTMLElement,
-  props : any;
+export interface constructorType {
+  $target: HTMLElement;
+  props: any;
 }

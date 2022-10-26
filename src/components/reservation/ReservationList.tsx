@@ -43,7 +43,6 @@ export default class ReservationList extends Component {
   }
 
   componentDidMount() {
-
     const { onClickReservation, onClickBtn } = this.props;
     this.$target.addEventListener('click', onClickReservation);
     this.$target.addEventListener('click', onClickBtn);
