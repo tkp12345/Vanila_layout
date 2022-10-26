@@ -77,6 +77,7 @@ export default class App extends Component {
     } else {
       this.setState({
         ...this.state,
+        clickedItem,
         scrollHeight: reservationListScrollTop ? reservationListScrollTop : 0,
       });
     }
