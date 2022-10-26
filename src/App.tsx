@@ -6,9 +6,10 @@ import { getReservation } from './api/reserve';
 import './style/desktop/reservation/reservation.styled.scss';
 import './style/index.scss';
 import './style/mobile/index.scss';
+import { constructorType } from './utills/type';
 
 export default class App extends Component {
-  constructor(...rest: any) {
+  constructor(...rest :constructorType[]) {
     // @ts-ignore
     super(...rest);
   }
@@ -25,7 +26,7 @@ export default class App extends Component {
       scrollHeight:0,
     });
   }
-  template() {
+  template(): string {
     return ` 
            <main>
             <div class="container">
@@ -41,9 +42,7 @@ export default class App extends Component {
 
   async componentDidMount() {
 
-    // @ts-ignore
-    const { onClickReservation, onClickReservationBtn, onClickClosePopup, scrollHeight } = this;
-
+    const { onClickReservation, onClickReservationBtn, onClickClosePopup } = this;
     new ReservationList($('.reservationList-container'), {
       reservations: this.state?.reservations,
       onClickReservation: onClickReservation.bind(this),
@@ -55,19 +54,16 @@ export default class App extends Component {
       isShowDetail: this.state.isShowDetail,
       onClickClosePopup: onClickClosePopup.bind(this),
     });
-    console.log('scrollHeight:',scrollHeight)
-    $('.reservationList-items').scrollTop = scrollHeight;
   }
 
   /********************************************************************************
    *  예약목록 클릭 이벤트 핸들러
    ********************************************************************************/
-  async onClickReservation(e) {
+  async onClickReservation(e :any) {
     console.log($('.reservationList-items').scrollTop)
     e.stopPropagation();
     e.preventDefault();
     const reservationListScrollTop=$('.reservationList-items').getBoundingClientRect().top
-    console.log('reservationListScrollTop:',reservationListScrollTop)
     if (e.target.tagName === 'BUTTON') return;
     const id = e.target.closest('li')?.dataset?.id;
     if (!id) return;
@@ -81,10 +77,8 @@ export default class App extends Component {
         isShowDetail: 'isShow',
       });
     } else {
-      console.log('여기여기여기')
       this.setState({
         ...this.state,
-        clickedItem,
         scrollHeight:reservationListScrollTop?reservationListScrollTop:0,
       });
     }
@@ -93,7 +87,7 @@ export default class App extends Component {
   /********************************************************************************
    *  예약목록 내부 버튼(예약 , 착석) 버튼 클릭 이벤트 핸들러
    ********************************************************************************/
-  async onClickReservationBtn(e) {
+  async onClickReservationBtn(e:any) {
     e.stopPropagation();
     e.preventDefault();
     const target = e.target;
@@ -124,10 +118,9 @@ export default class App extends Component {
   /********************************************************************************
    *  [모바일환경] 팝업 닫기 버튼 클릭 이벤트 핸들러
    ********************************************************************************/
-  async onClickClosePopup(e) {
+  async onClickClosePopup(e:any) {
     e.stopPropagation();
     e.preventDefault();
-    console.log('e.target.id:', e.target.id);
     if (e.target.tagName !== 'BUTTON' && e.target.id !== 'dim') return;
     this.setState({
       ...this.state,
